@@ -72,18 +72,23 @@ class Site extends CI_Controller {
 			}
 		}
 		$siteName = "Coloftech Multiblog";
-		//var_dump($site);exit();
-			if($site){
 
-			$siteName = isset($site[0]->site_name) ? $site[0]->site_name : '' ;
-			$siteId = isset($site[0]->site_id) ? $site[0]->site_id : 1 ;
+		if($site){
+
+			$siteName = $site[0]->site_name  ;
+			$siteId = $site[0]->site_id ;
+			$site_path = $site[0]->site_path ;
 
 				$limit = 5;
 				$start = $this->input->get('row') ? $this->input->get('row') : 0;
 				$total_rows = count($this->post_m->get_site_post($siteId));
-				$data['pagination'] = $this->subpaging($total_rows,$limit,$start,$sites);
+
+				$data['pagination'] = $this->subpaging($total_rows,$limit,$start,$site_path);
+
 				$data['posts'] = $this->post_m->get_site_post($siteId,$limit,$start);
-	
+
+			//	var_dump($data['posts']);
+		//exit();
 			}
 
 		$data['site_title'] = $siteName;

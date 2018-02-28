@@ -17,7 +17,7 @@ class Post_m extends CI_Model
 			->where('post.site_id',$site_id)
 			->order_by('post.date_posted desc');
 			if($limit && $start){
-			$this->db->limit($start,$limit);
+			$this->db->limit($limit,$start);
 			}elseif($limit){
 			$this->db->limit($limit);
 			}
