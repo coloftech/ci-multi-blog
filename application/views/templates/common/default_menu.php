@@ -29,7 +29,7 @@
                           <li class="home"> <a href="<?php echo site_url(); ?>"><i class="fa fa-home"></i></a></li>
                             <?php endif ?> 
                           <?php echo $this->auto_m->menu_top(); ?>
-                          <li><a href="<?php echo site_url(); ?>/search">Search</a></li>
+                          <li><a href="<?php echo site_url($site_path.'/search/-q-'); ?>">Search</a></li>
 
                           <?php if (!$this->permission->is_loggedin()): ?>
                             

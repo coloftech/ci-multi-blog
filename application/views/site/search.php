@@ -1,18 +1,23 @@
 <div class="wrapper site-wrapper">
 	<br />
 	<div class="container site-container">
-<div class="col-md-9 site-index">
+<div class="col-md-9 search-index">
 
  
+				<div class="col-md-12 post-search">
+					<form class="form form-horizontal" method="GET" action="" id="frmsearch" name="frmsearch">
+						<div class="form-group">
 
-<?php 
+							<div class="col-md-11"><input type="text" name="q" id="q" class="form-control"></div><div class="col-md-1"><button class="btn btn-default"><i class="fa fa-search"></i></button></div>
+						</div>
+					</form>
+				</div>
 
-$page = $this->input->get('p') ? $this->input->get('p') : 'bilar';
- ?>
 		<?php if (isset($posts)): ?>
+
 			<?php if (is_array($posts)): ?>
 				<?php foreach ($posts as $key): ?>
-					<div class="post">
+					<div class="col-md-12 post">
 						<div class="col-md-6 post-featured-img">
 
 							<div class="year"><?=$key->post_year;?></div>
@@ -62,25 +67,6 @@ $page = $this->input->get('p') ? $this->input->get('p') : 'bilar';
 			<?php endif ?>
 
 		<?php endif ?>
-		<?php if (empty($posts)): ?>
-				
-			<?php if (isset($list_pages)): ?>
-			<?php if (is_array($list_pages)): ?>
-				<?php foreach ($list_pages as $key): ?>
-						<?php if(!empty($key->page_content)): ?>
-							<div class="col-md-12" style="margin:0;padding:0;">
-							<div class="panel">
-								<div class="panel-heading"><h4><?=$key->page_title?></h4></div>
-								<div class="panel-body"><?=$this->auto_m->limit_300($key->page_content);?></div>
-							</div>
-							</div>
-
-						<?php endif ?>
-					
-				<?php endforeach ?>
-			<?php endif ?>
-			<?php endif ?>
-		<?php endif  ?>
 
 <div class="col-md-12"><?=isset($pagination) ? $pagination :"";?></div>
 </div>

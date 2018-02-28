@@ -100,6 +100,7 @@ pre{
     background-color: #fff;
     padding-top: 10px;
 }
+
 .post{
     height: 300px;
     background-color: #fff;
@@ -107,6 +108,7 @@ pre{
     margin-bottom: 50px;
     overflow: hidden;
 }
+
 .post > .post-featured-img{
     height: 250px !important;
     display: block;
@@ -331,6 +333,20 @@ pre{
 
     display: block;
 }
+.search-index{
+    margin: 0;
+}
+.search-index > .post{
+    margin: 0;
+    padding: 0;
+}
+.search-index > .post-search{
+    max-height: 50px;
+    margin: 0;
+    padding: 0;
+
+}
+
 .side-bar .panel-search i.fa.fa-search{
     display: inline-block;
     position: absolute;

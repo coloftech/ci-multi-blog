@@ -44,6 +44,42 @@ class Post_m extends CI_Model
 		}
 		
 	}
+	public function post_search($site_id=false,$limit=false,$start=false,$post_title){
+		if ($site_id) {
+			$post = $this->db->dbprefix('post');
+			$this->db->select('post.*,YEAR('.$post.'.date_posted) as post_year,DATE_FORMAT('.$post.'.date_posted,"%b") as post_month,DAY('.$post.'.date_posted) as post_day,site.site_path,site.site_name')
+			->from('post')
+			->join('site','site.site_id = post.site_id','LEFT')
+			->where(array('post.site_id'=>$site_id,'post.post_title'=>$post_title))
+			->order_by('post.date_posted desc');
+			if($limit && $start){
+			$this->db->limit($limit,$start);
+			}elseif($limit){
+			$this->db->limit($limit);
+			}
+			$query = $this->db->get();
+
+		return $query->result();
+		}else{
+
+
+			$post = $this->db->dbprefix('post');
+			$this->db->select('post.*,YEAR('.$post.'.date_posted) as post_year,DATE_FORMAT('.$post.'.date_posted,"%b") as post_month,DAY('.$post.'.date_posted) as post_day,site.site_path')
+			->from('post')
+			->join('site','site.site_id = post.site_id','LEFT')	
+			->like('post.post_title',$post_title,'both')		
+			->order_by('post.date_posted desc');
+			if($limit && $start){
+			$this->db->limit($limit,$start);
+			}elseif($limit){
+			$this->db->limit($limit);
+			}
+			$query = $this->db->get();
+
+		return $query->result();
+
+		}
+	}
 
 	public function posted_by($id=0)
 	{

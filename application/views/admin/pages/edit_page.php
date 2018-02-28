@@ -190,6 +190,11 @@
 
 			            	$('.user-profile').notify('Page updated succesfully.', { position:"bottom right", className:"success"
 			            	 }); 
+			            	
+			             setTimeout(function(){
+			             	window.location.reload() = true;
+
+		      			 },2000);
 						}else{
 
 			            	$('.user-profile').notify('Page not updated!', { position:"bottom right", className:"error" }); 

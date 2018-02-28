@@ -25,7 +25,7 @@ class Site extends CI_Controller {
 
 		$data['posts'] = $this->post_m->get_site_post(false,$limit,$start);
 		$data['pagination'] = $this->paging($total_rows,$limit,$start);
-
+		$data['site_path'] = $this->site_m->getSiteName(false,1)[0]->site_path;
 
 
 		$data['site_title'] = 'Bohol Island State University - Bilar Campus';
@@ -90,7 +90,7 @@ class Site extends CI_Controller {
 			//	var_dump($data['posts']);
 		//exit();
 			}
-
+		$data['site_path'] = $site_path;
 		$data['site_title'] = $siteName;
 		$data['list_pages'] = $this->pages_m->list_pages($siteId,3);
 		$data['sidebar_pages'] = $this->pages_m->list_pages($siteId);
@@ -105,6 +105,7 @@ class Site extends CI_Controller {
 			$site = $this->site_m->getSiteName($site);
 			$siteName = isset($site[0]->site_name) ? $site[0]->site_name : '' ;
 			$siteId = isset($site[0]->site_id) ? $site[0]->site_id : 1 ;
+			$data['site_path'] = isset($site[0]->site_path) ? $site[0]->site_path : 'home' ;
 
 			$info = $this->uri->segment(2);
 			if($info == 'p'){
@@ -200,8 +201,21 @@ class Site extends CI_Controller {
 		redirect();
 	}
 
-	public function search($q=''){
+	public function search($site='home',$q=''){
+		
+		$data['site_path'] = $this->site_m->getSiteName(false,1)[0]->site_path;
+		if($q = $this->input->get('q')){
+		//	redirect($data['site_path']."/search/".$this->input->get('q'));
+			if(!empty($q)){
 
+			$data['posts'] = $this->post_m->post_search(false,false,false,$q);
+			}
+		}
+
+
+
+		$data['site_title'] = 'Search post';
+		$this->template->load(false,'site/search',$data);
 	}
 
 

@@ -191,13 +191,18 @@
 		      dataType:'json',
 		      success: function (resp) {
 		  
-			  			console.clear();
-						console.log(resp);
+			  			//console.clear();
+						//console.log(resp);
 
 						if(resp.stats == true){
 
 			            	$('.user-profile').notify('Page added succesfully.', { position:"bottom right", className:"success"
 			            	 }); 
+
+			             setTimeout(function(){
+			             	window.location.reload() = true;
+
+		      			 },2000);
 						}else{
 
 			            	$('.user-profile').notify('Page not added!', { position:"bottom right", className:"error" }); 
