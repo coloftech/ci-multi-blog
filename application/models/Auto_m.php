@@ -40,6 +40,8 @@ class Auto_m extends CI_Model
         $config['num_tag_open'] = '<li>';
         $config['num_tag_close'] = '</li>';
         $config['query_string_segment'] = 'row';
+        //$config['reuse_query_string'] = true;
+        $config['page_query_string'] = true;
             
             $this->pagination->initialize($config);
             

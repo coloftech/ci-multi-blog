@@ -61,8 +61,19 @@ class Site extends CI_Controller {
 	}
 	public function sites($sites='home'){
 
-		$siteName = 'Coloftech';
-			if($site = $this->site_m->getSiteName($sites)){
+		if(empty($sites)){
+			$site = $this->site_m->getSiteName(false,1);
+		}else{
+			if(is_numeric($sites)){
+			$site = $this->site_m->getSiteName(false,1);
+			}else{
+
+			$site = $this->site_m->getSiteName($sites);
+			}
+		}
+		$siteName = "Coloftech Multiblog";
+		//var_dump($site);exit();
+			if($site){
 
 			$siteName = isset($site[0]->site_name) ? $site[0]->site_name : '' ;
 			$siteId = isset($site[0]->site_id) ? $site[0]->site_id : 1 ;
@@ -135,7 +146,7 @@ class Site extends CI_Controller {
 		$data['site_path'] = $page;
 
 		if($info){
-			
+
 		$data['link'] = site_url(''.$page.'/'.$info[0]->slug);
 		$data['meta_title'] = $info[0]->post_title;
 		$data['description'] = $this->auto_m->limit_300($info[0]->post_content);

@@ -137,9 +137,17 @@ class Post extends CI_Controller {
 				echo json_encode(array('stats'=>false,'msg'=>'Title already used.'));
 				exit();
 			}
+			
+			$date_posted = $input->years.'-'.$input->months.'-'.$input->days;			
+			$date = date('Y-m-d');
+			if ($date === $date_posted) {
+				
+			$date_posted = date('Y-m-d H:i:s');
+			}else{
 
-			$date_posted = $input->years.'-'.$input->months.'-'.$input->days.' '.date('h:m:s');
-	
+			$date_posted = $input->years.'-'.$input->months.'-'.$input->days.' '.date('H:i:s');	
+			}
+
 			$info = array(
 				'post_title' => $input->title,
 				'slug'=>$slug,
@@ -214,8 +222,17 @@ class Post extends CI_Controller {
 
 			$slug = $this->slug->create($input->title);
 			$keywords = explode(',', $input->title.','.$input->keyword);
+			
+			$date_posted = $input->years.'-'.$input->months.'-'.$input->days;			
+			$date = date('Y-m-d');
+			if ($date === $date_posted) {	
+						
+			$date_posted = date('Y-m-d H:i:s');
 
-			$date_posted = $input->years.'-'.$input->months.'-'.$input->days.' '.date('h:m:s');
+			}else{
+
+			$date_posted = $input->years.'-'.$input->months.'-'.$input->days.' '.date('H:i:s');	
+			}
 			$info = array(
 				'post_title' => $input->title,
 				'slug'=>$slug,
