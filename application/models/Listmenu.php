@@ -35,8 +35,9 @@ class Listmenu extends CI_Model
 
     function get_menu_items()
     {
-
-        $page = ($this->input->get('p')) ? $this->input->get('p') : 'bilar';
+        
+        $page = $this->uri->segment(1) ? $this->uri->segment(1) : 'home';
+        /*/($this->input->get('p')) ? $this->input->get('p') : 'bilar';*/
         $site_id  = $this->site_m->getSiteId($page);
         $this->db->select('*');
         $this->db->from('pages');
@@ -51,7 +52,7 @@ class Listmenu extends CI_Model
      */
     function get_menu_html( $root_id = 0 )
     {
-        $page = ($this->input->get('p')) ? $this->input->get('p') : 'bilar';
+        $page = $this->uri->segment(1) ? $this->uri->segment(1) : 'home';
         $this->html  = array();
         $this->items = Self::get_menu_items();
         //var_dump($this->items);die();
@@ -84,7 +85,7 @@ class Listmenu extends CI_Model
 
                 // HTML for menu item containing childrens (open)
                 
-                    $path =  site_url("c=site&f=view&p=$page&i=").$option['value']['page_title'];//'?c=info&m=getinfo&q='.$option['value']['site_id'];
+                    $path =  site_url("$page/p/").$option['value']['page_title'];
                 
                 $this->html[] = sprintf(
                     '%1$s<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">%3$s <span class="caret"></span></i></a>',
@@ -100,7 +101,7 @@ class Listmenu extends CI_Model
             else{
                 // HTML for menu item with no children (aka "leaf") 
                  
-                    $path =  site_url("c=site&f=view&p=$page&i=").$option['value']['page_title'];
+                    $path =  site_url("$page/p/").$option['value']['page_title'];
                 
                 $this->html[] = sprintf(
                     '%1$s<li><a href="%2$s">%3$s</a></li>',

@@ -85,7 +85,9 @@ if(isset($description)){
 </ul>
         </div>
         <div class="col-md-4 recentspost">
-            <h3>RECENT POST</h3></div>
+            <h3>RECENT POST</h3>
+          
+        <?php echo $this->auto_m->recent_post_footer(); ?></div>
         <div class="col-md-4 campuses">
             
             <h3>PROJECTS</h3>

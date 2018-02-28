@@ -22,7 +22,7 @@
 			   			<div class="post-content">
 			   				<div class="col-md-12 post-title">
 
-			   					<h3><?php echo $key->post_title; ?> <a href="<?=site_url("c=post&f=edit&id=$key->post_id");?>"><i class="btn fa fa-edit"></i></a></h3>
+			   					<h3><?php echo $key->post_title; ?> <a href="<?=site_url("post/edit/$key->post_id");?>"><i class="btn fa fa-edit"></i></a></h3>
 			   					</div>
 			   				<div class="col-md-12 post-content-desc">
 			   					<?php echo $key->post_content; ?>
@@ -66,7 +66,7 @@
 			<ul class="recent-post">
 				<?php if (isset($sidebar_pages)): ?>
 					<?php foreach ($sidebar_pages as $key): ?>
-						<li><a href="<?=site_url('c=site&f=view&p='.$key->site_path.'&i='.$key->page_title);?>"><?=$key->page_title?></a></li>
+						<li><a href="<?=site_url(''.$key->site_path.'/p/'.$key->page_title);?>"><?=$key->page_title?></a></li>
 					<?php endforeach ?>
 				<?php endif ?>
 			</ul>

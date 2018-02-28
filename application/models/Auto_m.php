@@ -5,18 +5,18 @@
 */
 class Auto_m extends CI_Model
 {
-	
-	function __construct()
-	{
-		parent::__construct();
-		$this->init();
-	}
-	public function init($value='')
-	{
-		# code...
-		$this->load->library('minify');
-		$this->load->library('session');
-		$this->load->library('pagination');
+    
+    function __construct()
+    {
+        parent::__construct();
+        $this->init();
+    }
+    public function init($value='')
+    {
+        # code...
+        $this->load->library('minify');
+        $this->load->library('session');
+        $this->load->library('pagination');
 
                     // integrate bootstrap pagination
         $config['full_tag_open'] = '<ul class="pagination">';
@@ -40,28 +40,28 @@ class Auto_m extends CI_Model
         $config['num_tag_open'] = '<li>';
         $config['num_tag_close'] = '</li>';
         $config['query_string_segment'] = 'row';
-			
+            
             $this->pagination->initialize($config);
             
         date_default_timezone_set('Asia/Manila');
 
         $this->load->library('visitors');
-	}
-	public function recent_post($value=10)
-	{
-		$this->load->model('post_m');
-		$html = '';
-		if($recents = $this->post_m->recent_post(false,5)){
+    }
+    public function recent_post($value=10)
+    {
+        $this->load->model('post_m');
+        $html = '';
+        if($recents = $this->post_m->recent_post(false,5)){
 
-			foreach ($recents as $key) {
-				# code...
-				$html.= "<li><a href='".site_url("c=site&f=read&p=$key->site_path&i=$key->slug")."' >$key->post_title</a></li>";
-			}
-		}
-		return $html;
-	}
+            foreach ($recents as $key) {
+                # code...
+                $html.= "<li><a href='".site_url("$key->site_path/$key->slug")."' >$key->post_title</a></li>";
+            }
+        }
+        return $html;
+    }
 
-    public function recent_post_footer($value=10)
+    public function recent_post_footer($value=5)
     {
         $this->load->model('post_m');
         $html = '';
@@ -69,30 +69,30 @@ class Auto_m extends CI_Model
 
             foreach ($recents as $key) {
                 # code...
-                $html.= "<li> <a href='".site_url("c=site&f=read&p=$key->site_path&i=$key->slug")."' >$key->post_title</a></li>";
+                $html.= "<li> <a href='".site_url("$key->site_path/$key->slug")."' >$key->post_title</a></li>";
             }
         }
         return $html;
     }
 
-	public function getSites()
-	{
-		$this->load->model('admin_m');
-		$html = '';
-		if($hosted_sites = $this->admin_m->hosted_sites()){
+    public function getSites()
+    {
+        $this->load->model('admin_m');
+        $html = '';
+        if($hosted_sites = $this->admin_m->hosted_sites()){
 
-			foreach ($hosted_sites as $key) {
-				# code...
+            foreach ($hosted_sites as $key) {
+                # code...
                 //if($key->site_id != 1){
 
-                $html.= "<li><a href='".site_url("site/view/$key->site_path/")."' >$key->site_name</a></li>";
+                $html.= "<li><a href='".site_url("$key->site_path/")."' >$key->site_name</a></li>";
                 //}
-			}
-		}else{
-			$html.= "<li><a href='".site_url()."' >Home</a></li>";
-		}
-		return $html;
-	}
+            }
+        }else{
+            $html.= "<li><a href='".site_url()."' >Home</a></li>";
+        }
+        return $html;
+    }
         public function getColleges($category = 0)
     {
         $this->load->model('site_m');
@@ -111,15 +111,15 @@ class Auto_m extends CI_Model
     }
 
 
-	public function free_space()
-	{
-		$this->load->model('post_m');
-		$html = '';
-		if($recents = $this->post_m->free_space(time())){
+    public function free_space()
+    {
+        $this->load->model('post_m');
+        $html = '';
+        if($recents = $this->post_m->free_space(time())){
 
-		}
+        }
 
-	}
+    }
 
     public function limitext($string='')
     {

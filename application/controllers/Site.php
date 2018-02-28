@@ -49,7 +49,7 @@ class Site extends CI_Controller {
 	public function subpaging($total=0,$limit=0,$start=0,$page='')
 	{
 		
-						$config['base_url'] = site_url("c=site&f=view&p=$page");
+						$config['base_url'] = site_url($page);
 			            $config['total_rows']=$total;
 			            $config['per_page'] = $limit;			            
 				        $choice = $config["total_rows"]/$config["per_page"];
@@ -59,91 +59,56 @@ class Site extends CI_Controller {
 			                 
 			            return $this->pagination->create_links();
 	}
-	public function view($page='bilar')
-	{
+	public function sites($sites='home'){
 
-		$site = $this->site_m->getSiteName($page);
-		$siteName = isset($site[0]->site_name) ? $site[0]->site_name : 'Bilar Campus' ;
-		$siteId = isset($site[0]->site_id) ? $site[0]->site_id : 1 ;
+		$siteName = 'Coloftech';
+			if($site = $this->site_m->getSiteName($sites)){
 
-
-		$info = $this->input->get('i') ? $this->input->get('i') : 'post';
-
-		if($info == 'post'){
+			$siteName = isset($site[0]->site_name) ? $site[0]->site_name : '' ;
+			$siteId = isset($site[0]->site_id) ? $site[0]->site_id : 1 ;
 
 				$limit = 5;
 				$start = $this->input->get('row') ? $this->input->get('row') : 0;
 				$total_rows = count($this->post_m->get_site_post($siteId));
-
-				$data['pagination'] = $this->subpaging($total_rows,$limit,$start,$page);
-
-					$data['posts'] = $this->post_m->get_site_post($siteId,$limit,$start);
-
-		}elseif($info == 'about')
-		{
-			if($sitesetting = $this->site_m->getSettings($info,$siteId)){
-
-			$data['about'] = $sitesetting[0]->setting_value;
+				$data['pagination'] = $this->subpaging($total_rows,$limit,$start,$sites);
+				$data['posts'] = $this->post_m->get_site_post($siteId,$limit,$start);
+	
 			}
-		
-		}else{
-
-			if($sitesetting = $this->site_m->getSettings($info,$siteId)){
-
-			$data['about'] = $sitesetting[0]->page_content;
-
-			$info_v = 'site/settingInfo';
-			$siteName = urldecode($info);
-			}
-
-		}
 
 		$data['site_title'] = $siteName;
 		$data['list_pages'] = $this->pages_m->list_pages($siteId,3);
 		$data['sidebar_pages'] = $this->pages_m->list_pages($siteId);
 
-		if(empty($info_v)){
+		$this->template->load(false,'site/indexSite',$data);
+	}
+	
+	public function sites_pages($site='',$p=false,$page=''){
 
-		$info_v = $this->info($page,$info);
+		
+
+			$site = $this->site_m->getSiteName($site);
+			$siteName = isset($site[0]->site_name) ? $site[0]->site_name : '' ;
+			$siteId = isset($site[0]->site_id) ? $site[0]->site_id : 1 ;
+
+			$info = $this->uri->segment(2);
+			if($info == 'p'){
+				$page = urldecode($this->uri->segment(3));
+
+				if($sitesetting = $this->site_m->getSettings($page,$siteId)){
+
+				$data['about'] = $sitesetting[0]->page_content;
+
+				$info_v = 'site/settingInfo';
+
+				$siteName = urldecode($page);
+
+			}
+
 		}
 
-		$this->template->load(false,$info_v,$data);
+		$data['page'] = $page;
+		$this->template->load(false,'site/settingInfo',$data);
 	}
-	public function info($page=false,$info=false)
-	{
-		switch ($info) {
-			case 'about':
-				
-				return 'site/about';
-
-				break;
-			
-			case 'contact':
-				
-				return 'site/contact';
-
-				break;
-			
-			case 'read':
-				
-				return 'site/read';
-
-				break;
-			case 'post':
-				
-
-				return 'site/indexSite';
-
-				break;
-
-			default:
-
-				return 'site/indexSite';
-				break;
-		}
-	}
-
-
 	public function read($page='home',$info='')
 	{	
 
@@ -169,10 +134,15 @@ class Site extends CI_Controller {
 		}
 		$data['site_path'] = $page;
 
-		$data['link'] = site_url('c=site&f=read&p='.$page.'&i='.$info[0]->slug);
+		if($info){
+			
+		$data['link'] = site_url(''.$page.'/'.$info[0]->slug);
 		$data['meta_title'] = $info[0]->post_title;
 		$data['description'] = $this->auto_m->limit_300($info[0]->post_content);
 		$data['featured_image'] = $this->post_m->get_featuredImg($info[0]->post_id);
+		}
+
+
 		$this->template->load(false,'site/read',$data);
 
 	}
@@ -213,4 +183,11 @@ class Site extends CI_Controller {
 		$this->permission->logout();
 		redirect();
 	}
+
+	public function search($q=''){
+
+	}
+
+
+
 }

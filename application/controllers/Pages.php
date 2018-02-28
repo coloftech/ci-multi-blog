@@ -32,13 +32,13 @@ class Pages extends CI_Controller {
 		$this->template->load('admin','admin/pages/list_pages.php',$data);
 	}
 
-	public function edit_page($value='')
+	public function edit_page($page_id='')
 	{
 		$data['editform'] = true;
 
 
-		if($this->input->get()){
-			$page_id = $this->input->get('id');
+		//if($this->input->get()){
+			//$page_id = $this->input->get('id');
 			$info = $this->pages_m->getPageById($page_id);
 
 			$data['page_title'] = $info[0]->page_title;
@@ -47,7 +47,7 @@ class Pages extends CI_Controller {
 			$data['site_id'] = $info[0]->site_id;
 			$data['parent_id'] = $info[0]->parent_id;
 			$data['page_title'] = $info[0]->page_title;
-		}
+		//}
 
 		//var_dump($data);exit();
 		$data['hosted_site'] = $this->permission->list_user_sites($this->uid);

@@ -59,6 +59,7 @@ $route['admin/(:any)'] = 'administration/$1';
 
 $route['pages'] = 'pages';
 $route['pages/(:any)'] = 'pages/$1';
+$route['pages/(:any)/(:any)'] = 'pages/$1/$2';
 
 $route['post'] = 'post';
 $route['post/(:any)'] = 'post/$1';
@@ -76,5 +77,7 @@ $route['login'] = 'site/login';
 $route['logout'] = 'site/logout';
 $route['site/(:any)'] = 'site/$1';
 
+$route['(:any)'] = 'site/sites/$1';
 $route['(:any)/(:any)'] = 'site/read/$1/$2';
-$route['(:any)'] = 'site/view/$1';
+$route['(:any)/p/(:any)'] = 'site/sites_pages/$1/$2';
+//$route['(:any)'] = 'site/sites/$1';
