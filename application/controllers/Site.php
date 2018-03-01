@@ -238,14 +238,53 @@ class Site extends CI_Controller {
 		
 		$data['site_path'] = $this->site_m->getSiteName(false,1)[0]->site_path;
 		if($q = $this->input->get('q')){
-		//	redirect($data['site_path']."/search/".$this->input->get('q'));
+
 			if(!empty($q)){
 
-			$data['posts'] = $this->post_m->post_search(false,false,false,$q);
+				$q = $this->slug->removecommon($q);
+
+				$keys = array_filter(explode(' ', $q));
+				
+				$result = '';
+				foreach ($keys as $q) {
+					
+				$result[] = $this->post_m->post_search(false,false,false,$q);
+					
+				}
+				
+					$posted_id = array();
+					$list_post = false;
+					$i = 0;
+					if(!empty($result)){
+
+						if (is_array($result)) {
+							# code...		
+							foreach ($result as $key) {
+							
+								foreach ($key as $obj) {
+									# code...
+									if(in_array($obj->post_id,$posted_id)){
+
+									}else{
+
+										$list_post[] = $obj;
+										$posted_id[] = $obj->post_id;
+
+										}
+								}
+								$i++;
+						}
+						}
+					}
+
 			}
 		}
 
 
+		$data['posts'] = isset($list_post) ? $list_post : '';
+
+		//var_dump($list_post);
+		//exit();
 
 		$data['site_title'] = 'Search post';
 		$this->template->load(false,'site/search',$data);
