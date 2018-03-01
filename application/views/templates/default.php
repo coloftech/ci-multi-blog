@@ -39,25 +39,10 @@ if(isset($description)){
 
     <style type="text/css">
     </style>
-        <!-- CORE PLUGINS -->
-        <script src="<?=base_url('public/assets/js/jquery-1.11.0.min.js');?>" type="text/javascript"></script>
-        <script src="<?=base_url('public/assets/bootstrap/js/bootstrap.min.js');?>" type="text/javascript"></script>
-        <script src="<?=base_url('public/assets/js/jquery-migrate.min.js');?>" type="text/javascript"></script>
-        <script src="<?=base_url('public/assets/js/notify/dist/notify.js');?>" type="text/javascript"></script>
+       
 
 </head>
-<body class="site"><!-- <script src="//defpush.com/ntfc.php?p=1548402" data-cfasync="false" async></script> -->
-    <div id="fb-root"></div>
-<script> /*
-(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.12&appId=908155116011125&autoLogAppEvents=1';
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));
-
-*/</script>
+<body class="site">
 <header class="wrapper" >
     <div class="container" >
         
@@ -103,5 +88,27 @@ if(isset($description)){
 
     </div>
 </footer>
+
+
+ <!-- CORE PLUGINS -->
+        <script src="<?=base_url('public/assets/js/jquery-1.11.0.min.js');?>" type="text/javascript"></script>
+        <script src="<?=base_url('public/assets/bootstrap/js/bootstrap.min.js');?>" type="text/javascript"></script>
+        <script src="<?=base_url('public/assets/js/jquery-migrate.min.js');?>" type="text/javascript"></script>
+        <script src="<?=base_url('public/assets/js/notify/dist/notify.js');?>" type="text/javascript"></script>
+        <script src="<?=base_url('public/assets/js/col-script.js');?>" type="text/javascript"></script>
+      
+<script> /*
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.12&appId=908155116011125&autoLogAppEvents=1';
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+
+*/</script>
+
+      <?php echo isset($js_script) ? $js_script : '';?>
+
 </body>
 </html>

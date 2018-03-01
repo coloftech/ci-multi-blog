@@ -80,4 +80,5 @@ $route['site/(:any)'] = 'site/$1';
 $route['(:any)'] = 'site/sites/$1';
 $route['(:any)/(:any)'] = 'site/read/$1/$2';
 $route['(:any)/p/(:any)'] = 'site/sites_pages/$1/$2';
+$route['(:any)/search/(:any)'] = 'site/search/$1/$2';
 //$route['(:any)'] = 'site/sites/$1';

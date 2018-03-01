@@ -172,6 +172,39 @@ class Site extends CI_Controller {
 			redirect($page);
 		}
 
+		$data['js_script'] = "
+			<script>
+				  $('#frmlogin').on('submit',function(){
+				    var data = $(this).serialize();
+				    $.ajax({
+				      type: 'post',
+				      dataType: 'json',
+				      data: data,
+				      url: 'site/check_login',
+				      success: function(res){
+				        if(res.stats){
+
+				             $('header').notify(res.msg, { position:\"bottom right\", className:\"success\" }); 
+
+				             setTimeout(function(){
+				              window.location.reload() = true;
+				             },2000);
+				             return false;
+				          }else{
+
+				             $('header').notify(res.msg, { position:\"bottom right\", className:\"error\" }); 
+				          }
+
+				      }
+				    });
+				    return false;
+
+				  });
+				  </script>
+		";
+
+		$data['site_path'] = $this->site_m->getSiteName(false,1)[0]->site_path;
+
 		$data['site_title'] = 'Login';
 		$this->template->load(false,'site/login',$data);
 
