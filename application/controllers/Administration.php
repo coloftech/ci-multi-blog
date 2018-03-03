@@ -29,10 +29,41 @@ class Administration extends CI_Controller {
 	public function index($value='')
 	{
 		# code...
+
+		$visitor = '';
+		$today = date('d');
+
+		$oneweek = date('Y-m-d',strtotime('- 7 days')) ;
+		//exit();
+		//$oneweek = date('d',$oneweek);
+		for ($i=1; $i <= 7 ; $i++) { 
+			//echo "<br />";
+			$date = date('Y-m-d', strtotime("+".$i." day", strtotime($oneweek)));
+			
+			if($count = $this->admin_m->visitors($date)){
+
+			$visitor[] =  array('day'=>$date,'visit'=>$count);
+			}else{
+
+			$visitor[] =  array('day'=>$date,'visit'=>0);
+			}
+		}
+
+		$day = '';
+		$visits = '';
+		foreach ($visitor as $key) {
+			$day[] = $key['day'];
+			$visit[] = (int)$key['visit'];
+		}
+
+	//	$data['day'] = $day;
+		//$data['visit'] = $visit;
 		$data = array(
  
 		    'isadmindashboard' => true,
-		    'site_title' => 'Administration'
+		    'site_title' => 'Administration',
+		    'day'=>$day,
+		    'visit'=>$visit
 		     
 		);
 		

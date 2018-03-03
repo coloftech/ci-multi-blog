@@ -117,3 +117,19 @@ if(isset($description)){
 
 </body>
 </html>
+
+<?php 
+
+//$slug = $this->input->get('slug');
+$page = $this->uri->segment(1);
+if($page2 = $this->uri->segment(2)){
+    $page = $page.'/'.$page2;
+}
+if($page3 = $this->uri->segment(3)){
+    $page = $page.'/'.$page3;
+}
+$visit =  new Visitors();
+$visit->run($page);
+
+    
+     ?>

@@ -49,10 +49,10 @@
 		            text: 'Weekly visitors'
 		        },
 		        subtitle: {
-		            text: 'Source: bilar.bisu.edu.ph'
+		            text: 'Source: <?=site_url();?>'
 		        },
 		        xAxis: {
-		            categories: <?php echo json_encode(array('Mon','Tue','Wed','Thur','Fri','Sat','Sun')) ?>,
+		            categories: <?php echo json_encode($day) ?>,
 		            crosshair: true
 		        },
 		        yAxis: {
@@ -69,7 +69,7 @@
 		        },
 		        series: [{
 		            name: 'Visits',
-		            data: <?php echo json_encode(array(1,4,7,2,5,8,3)) ?>
+		            data: <?php echo json_encode($visit) ?>
 		        }]
 		    });
 

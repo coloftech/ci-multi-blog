@@ -34,6 +34,19 @@ class admin_m extends CI_Model
 		}
 	}
 
+	public function visitors($days)
+	{
+		$q = $this->db->select_sum('counter')
+			->from('post_view')
+			->where('complete_date',$days)
+			->get();
+		if($result  = $q->result()){
+			return $result[0]->counter;
+		}else{
+			return 0;
+		}
+
+	}
 
 
 
