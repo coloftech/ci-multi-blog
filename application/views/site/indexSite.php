@@ -21,7 +21,7 @@ $page = $this->input->get('p') ? $this->input->get('p') : 'bilar';
 							<div class="day"><?=$key->post_day;?></div>
 
 							<div class="blured">
-								<a href="<?=site_url("site/read/$key->site_path/$key->slug");?>">
+								<a href="<?=site_url("$key->site_path/$key->slug");?>">
 
 									<?php if ($img_link = $this->post_m->get_featuredImg($key->post_id)): ?>
 										
@@ -39,7 +39,7 @@ $page = $this->input->get('p') ? $this->input->get('p') : 'bilar';
 							
 						</div>
 						<div class="col-md-6 post-content">
-							<div class="post-title"><a href="<?=site_url("c=site&f=read&p=$key->site_path&i=$key->slug");?>"><h4><?=$this->auto_m->limit_title($key->post_title);?></h4></a></div>
+							<div class="post-title"><a href="<?=site_url("$key->site_path/$key->slug");?>"><h4><?=$this->auto_m->limit_title($key->post_title);?></h4></a></div>
 							<div class="post-content-desc"><?=$this->auto_m->limit_300($key->post_content)?></div>
 							<div class="post-options">
 								<div class="posted-by"><?php echo ucfirst($key->site_path); /*$this->post_m->posted_by($key->user_id); */
@@ -54,7 +54,7 @@ $page = $this->input->get('p') ? $this->input->get('p') : 'bilar';
 								}
 
 								?></div>
-								<div class="post-details"><a href="<?=site_url("/site/read/$key->site_path/$key->slug");?>" class="btn btn-default">Details <i class="fa fa-angle-right"></i></a href="#"></div>
+								<div class="post-details"><a href="<?=site_url("$key->site_path/$key->slug");?>" class="btn btn-default">Details <i class="fa fa-angle-right"></i></a href="#"></div>
 							</div>
 						</div>
 					</div>
@@ -87,7 +87,10 @@ $page = $this->input->get('p') ? $this->input->get('p') : 'bilar';
 <div class="col-md-3 side-bar">
 	<div class="panel panel-search">
 	<div class="panel-body">
-		<input class="form-control" placeholder="Search" id="search" name="q" /><i class="fa fa-search pul"></i></div>
+		<form class="form" action="<?=site_url($site_path.'/search/-q-');?> " method="GET">
+		<input class="form-control" placeholder="Search" id="search" name="q" /><i class="fa fa-search pul"></i>
+		</form>
+	</div>
 	</div>
 
 

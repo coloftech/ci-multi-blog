@@ -51,8 +51,8 @@
                     <a href="#" data-toggle="collapse" data-target="#site_setting"><i class="fa fa-fw fa-globe"></i>  Site setting <i class="fa fa-fw fa-angle-down pull-right"></i></a>
 
                     <ul id="site_setting"  class="collapse">
-                        <li><a href="<?=site_url('administration/sites/new')?>">New site</a></li>
-                        <li><a href="<?=site_url('administration/sites');?>">List sites</a></li>
+                        <li><a href="<?=site_url('admin/sites/new')?>">New site</a></li>
+                        <li><a href="<?=site_url('admin/sites');?>">List sites</a></li>
 
                     </ul>
                 </li>

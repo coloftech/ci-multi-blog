@@ -27,9 +27,19 @@ class Site extends CI_Controller {
 		$data['pagination'] = $this->paging($total_rows,$limit,$start);
 		$data['site_path'] = $this->site_m->getSiteName(false,1)[0]->site_path;
 
-
+		//echo json_encode($data['posts']);exit();
 		$data['site_title'] = 'Bohol Island State University - Bilar Campus';
 		$this->template->load(false,'site/index',$data);
+	}
+	function get_json_post($limit=5,$start=0){
+
+		$limit = 5;
+		$start = $this->input->get('row') ? $this->input->get('row') : 0;
+		$total_rows = count($this->post_m->get_site_post());
+
+		$data['posts'] = $this->post_m->get_site_post(false,$limit,$start);
+
+		echo json_encode($data['posts']);
 	}
 
 	public function paging($total=0,$limit=0,$start=0)

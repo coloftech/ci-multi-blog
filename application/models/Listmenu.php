@@ -85,7 +85,7 @@ class Listmenu extends CI_Model
 
                 // HTML for menu item containing childrens (open)
                 
-                    $path =  site_url("$page/p/").$option['value']['page_title'];
+                    $path =  site_url("$page/p/").str_replace(' ', '+', $option['value']['page_title']);
                 
                 $this->html[] = sprintf(
                     '%1$s<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">%3$s <span class="caret"></span></i></a>',
@@ -101,7 +101,7 @@ class Listmenu extends CI_Model
             else{
                 // HTML for menu item with no children (aka "leaf") 
                  
-                    $path =  site_url("$page/p/").$option['value']['page_title'];
+                    $path =  site_url("$page/p/").str_replace(' ', '+', $option['value']['page_title']);
                 
                 $this->html[] = sprintf(
                     '%1$s<li><a href="%2$s">%3$s</a></li>',

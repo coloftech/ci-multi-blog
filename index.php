@@ -91,13 +91,26 @@ switch (ENVIRONMENT)
 
 /*
  *---------------------------------------------------------------
+ * CONFIGURATION SETTINGS (config.ini.php)
+ *---------------------------------------------------------------
+ *
+ */
+$ini = parse_ini_file("config.ini.php", true);
+
+if($ini['installation']['installed'] == 'off'){
+	header("Location: install/index.php");
+}
+//print_r($ini['database']['hostname']);
+//exit();
+/*
+ *---------------------------------------------------------------
  * SYSTEM DIRECTORY NAME
  *---------------------------------------------------------------
  *
  * This variable must contain the name of your "system" directory.
  * Set the path if it is not in the same directory as this file.
  */
-	$system_path = 'system';
+	$system_path = $ini['dir']['system'];
 
 /*
  *---------------------------------------------------------------
@@ -114,7 +127,7 @@ switch (ENVIRONMENT)
  *
  * NO TRAILING SLASH!
  */
-	$application_folder = 'application';
+	$application_folder =  $ini['dir']['application'];
 
 /*
  *---------------------------------------------------------------
@@ -140,7 +153,7 @@ switch (ENVIRONMENT)
  * This variable must contain the name of your "system" directory.
  * Set the path if it is not in the same directory as this file.
  */
-	$upload_folder = 'public';
+	$upload_folder =  $ini['dir']['upload'];
 
 
 /*

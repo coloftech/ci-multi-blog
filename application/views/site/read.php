@@ -56,7 +56,12 @@
 <div class="col-md-3 side-bar">
 	<div class="panel panel-search">
 	<div class="panel-body">
-		<input class="form-control" placeholder="Search" id="search" name="q" /><i class="fa fa-search pul"></i></div>
+		
+		<form class="form" action="<?=site_url($site_path.'/search/-q-');?> " method="GET">
+		<input class="form-control" placeholder="Search" id="search" name="q" /><i class="fa fa-search pul"></i>
+		</form>
+
+	</div>
 	</div>
 
 

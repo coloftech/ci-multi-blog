@@ -71,7 +71,7 @@
 <div class="col-md-12"><?=isset($pagination) ? $pagination :"";?></div>
 </div>
 <div class="col-md-3 side-bar">
-	<div class="panel panel-search">
+	<div class="panel panel-search hidden">
 	<div class="panel-body">
 		<input class="form-control" placeholder="Search" id="search" name="q" /><i class="fa fa-search pul"></i></div>
 	</div>
