@@ -22,6 +22,7 @@ class Administration extends CI_Controller {
 
 		$this->load->model('admin_m');
 		$this->load->model('site_m');
+		$this->load->model('post_m');
 
 
 		$this->auto_m->free_space();
@@ -55,16 +56,16 @@ class Administration extends CI_Controller {
 			$day[] = $key['day'];
 			$visit[] = (int)$key['visit'];
 		}
-
-	//	$data['day'] = $day;
-		//$data['visit'] = $visit;
+		$total_post = $this->post_m->total_post();
+		$total_visitors = $this->admin_m->total_visitors();
 		$data = array(
  
 		    'isadmindashboard' => true,
 		    'site_title' => 'Administration',
 		    'day'=>$day,
-		    'visit'=>$visit
-		     
+		    'visit'=>$visit,
+		    'total_post'=>	$total_post,
+		    'total_visitors'=>	$total_visitors	     
 		);
 		
 		$this->template->load('admin','admin/index',$data);

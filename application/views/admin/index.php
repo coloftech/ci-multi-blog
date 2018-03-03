@@ -16,11 +16,11 @@
 		
 	</div>
 	<div class="col-md-3">
-		<div class="alert alert-info">Total posts <i class="fa fa-book"></i> 0</div>
+		<div class="alert alert-info">Total posts <i class="fa fa-book"></i> <?=isset($total_post) ? $total_post : 0;?></div>
 		
 	</div>
 	<div class="col-md-3">
-		<div class="alert alert-info">Todal Visits <i class="fa fa-eye"></i> </div>
+		<div class="alert alert-info">Todal Visits <i class="fa fa-eye"></i> <?=isset($total_visitors) ? $total_visitors : 0;?> </div>
 		
 	</div>
 	</div>

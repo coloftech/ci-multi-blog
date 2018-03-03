@@ -47,6 +47,18 @@ class admin_m extends CI_Model
 		}
 
 	}
+	public function total_visitors()
+	{
+		$q = $this->db->select_sum('counter')
+			->from('post_view')
+			->get();
+		if($result  = $q->result()){
+			return $result[0]->counter;
+		}else{
+			return 0;
+		}
+
+	}
 
 
 

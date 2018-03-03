@@ -7,6 +7,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Post_m extends CI_Model
 {
 
+	public function total_post($value='')
+	{
+		return $this->db->count_all_results('post');
+	}
 	public function get_site_post($site_id=false,$limit=false,$start=false)
 	{
 		if ($site_id) {
