@@ -56,6 +56,7 @@ $route['translate_uri_dashes'] = FALSE;
 
 $route['admin'] = 'administration';
 $route['admin/(:any)'] = 'administration/$1';
+$route['admin/(:any)/(:any)'] = 'administration/$1/$2';
 
 $route['pages'] = 'pages';
 $route['pages/(:any)'] = 'pages/$1';
@@ -63,15 +64,18 @@ $route['pages/(:any)/(:any)'] = 'pages/$1/$2';
 
 $route['post'] = 'post';
 $route['post/(:any)'] = 'post/$1';
+$route['post/(:any)/(:any)'] = 'post/$1/$2';
 
 $route['settings'] = 'settings';
 $route['settings/(:any)'] = 'settings/$1';
+$route['settings/(:any)/(:any)'] = 'settings/$1/$2';
 
 $route['summernote'] = 'summernote';
 $route['summernote/(:any)'] = 'summernote/$1';
 
 $route['user'] = 'user';
 $route['user/(:any)'] = 'user/$1';
+$route['user/(:any)/(:any)'] = 'user/$1/$2';
 
 $route['login'] = 'site/login';
 $route['logout'] = 'site/logout';

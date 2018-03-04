@@ -32,7 +32,7 @@ class Administration extends CI_Controller {
 		# code...
 
 		$visitor = '';
-		$today = date('d');
+		$today = date('Y-m-d');
 
 		$oneweek = date('Y-m-d',strtotime('- 7 days')) ;
 		//exit();
@@ -41,7 +41,7 @@ class Administration extends CI_Controller {
 			//echo "<br />";
 			$date = date('Y-m-d', strtotime("+".$i." day", strtotime($oneweek)));
 			
-			if($count = $this->admin_m->visitors($date)){
+			if($count = $this->visitors->visits($date)){
 
 			$visitor[] =  array('day'=>$date,'visit'=>$count);
 			}else{
@@ -57,7 +57,9 @@ class Administration extends CI_Controller {
 			$visit[] = (int)$key['visit'];
 		}
 		$total_post = $this->post_m->total_post();
-		$total_visitors = $this->admin_m->total_visitors();
+		$today_visit = $this->visitors->visits($today);
+		$total_visitors = $this->visitors->total_visitors();
+		$unique_visitors = $this->visitors->unique_visitors();
 		$data = array(
  
 		    'isadmindashboard' => true,
@@ -65,7 +67,9 @@ class Administration extends CI_Controller {
 		    'day'=>$day,
 		    'visit'=>$visit,
 		    'total_post'=>	$total_post,
-		    'total_visitors'=>	$total_visitors	     
+		    'today_visit'=>	$today_visit,
+		    'total_visitors'=>	$total_visitors,
+		    'unique_visitors'=>	$unique_visitors	     
 		);
 		
 		$this->template->load('admin','admin/index',$data);

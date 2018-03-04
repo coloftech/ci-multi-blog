@@ -16,7 +16,7 @@
 
         <?php // add css files
         $this->minify->css(array('animate.css','admin.css','print.css'));
-        echo $this->minify->deploy_css(FALSE, 'admin-style.min.css');    ?>
+        echo $this->minify->deploy_css(FALSE, 'admin-style2.min.css');    ?>
         
 
         <!-- CORE PLUGINS -->

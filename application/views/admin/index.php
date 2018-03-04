@@ -1,32 +1,40 @@
 <div class="wrapper admin-wrapper create">
-	<div class="panel Statitics">
+	<div class="panel panel-info  Statitics">
 		<div class="panel-heading"><h4>Statitics</h4></div>
 	
 	<div class="panel-body">
-	<div class="col-md-3">
-		<div class="alert alert-info">
+	<div class="col-md-4">
+		<div class="alert alert-danger">
 			New Messages	<i class="fa fa-envelope"></i> 0
 		</div>
 		
 	</div>
-	<div class="col-md-3">
-		<div class="alert alert-info">
+	<div class="col-md-4">
+		<div class="alert alert-danger">
 		Comments <i class="fa fa-comment"></i> 0
 		</div>
 		
 	</div>
-	<div class="col-md-3">
-		<div class="alert alert-info">Total posts <i class="fa fa-book"></i> <?=isset($total_post) ? $total_post : 0;?></div>
+	<div class="col-md-4">
+		<div class="alert alert-danger">Total posts <i class="fa fa-book"></i> <?=isset($total_post) ? $total_post : 0;?></div>
 		
 	</div>
-	<div class="col-md-3">
-		<div class="alert alert-info">Todal Visits <i class="fa fa-eye"></i> <?=isset($total_visitors) ? $total_visitors : 0;?> </div>
+	<div class="col-md-4">
+		<div class="alert alert-success">Total Visits <i class="fa fa-eye"></i> <?=isset($total_visitors) ? $total_visitors : 0;?> </div>
+		
+	</div>
+	<div class="col-md-4">
+		<div class="alert alert-success">Today Visits <i class="fa fa-eye"></i> <?=isset($today_visit) ? $today_visit : 0;?> </div>
+		
+	</div>
+	<div class="col-md-4">
+		<div class="alert alert-success">Unique Visits <i class="fa fa-eye"></i> <?=isset($unique_visitors) ? $unique_visitors : 0;?> </div>
 		
 	</div>
 	</div>
 
 	</div>
-		<div class="panel chart">
+		<div class="panel panel-info chart">
 		<div class="panel-heading"><h4>Graphical View</h4></div>
 	
 	<div class="panel-body">

@@ -1,4 +1,4 @@
-<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+<nav class="navbar navbar-default-primary navbar-fixed-top" role="navigation">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
@@ -8,7 +8,9 @@
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="<?=site_url('admin');?>">
-                <img src="<?=base_url('public/images/logo-line.png');?>">
+                <img src="<?=base_url('public/images/logo-only.png');?>">
+                <label class="big">COLOFTECH</label>
+                <label class="small">State of the Arts &amp; Technology</label>
             </a>
         </div>
         <!-- Top Menu Items -->

@@ -167,6 +167,20 @@ class Site extends CI_Controller {
 		$data['meta_title'] = $info[0]->post_title;
 		$data['description'] = $this->auto_m->limit_300($info[0]->post_content);
 		$data['featured_image'] = $this->post_m->get_featuredImg($info[0]->post_id);
+		$cat = '';
+		if($category = $this->post_m->get_categories($info[0]->post_id)){
+		$cats = '';
+			foreach ($category as $ca) {
+				$cats[] = $ca->cat_name;
+			}
+			$cat = implode(',', $cats);
+		}
+		$dkeywords = $this->post_m->get_tagsById($info[0]->post_id);
+		$tags=array();
+		foreach ($dkeywords as $key) {
+			$tags[] = $key->keyword;
+		}
+		$data['keywords'] = implode(',', $tags).','.$cat;
 		}
 
 

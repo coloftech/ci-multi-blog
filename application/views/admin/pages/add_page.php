@@ -73,17 +73,6 @@
 
               			<div class="form-group">
               				
-              				<div class="col-md-6">
-              					<input type="file" name="page_featured_img" id="page_featured_img" class="btn btn-link" style="display: inline-block;">
-              					<button class="btn btn-info btn-sm" style="display: inline-block;">Upload</button>
-              				</div>
-              				<div class="col-md-6">
-              					
-              				</div>
-              			</div>
-
-              			<div class="form-group">
-              				
               				<div class="col-md-12">
               					
               				<label></label><button type="submit" class="btn btn-success" id="btnpage">Publish</button> <button class="btn btn-warning pull-right hidden">Unpublish</button>
